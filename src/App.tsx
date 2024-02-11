@@ -31,7 +31,7 @@ function App() {
   }, [])
 
   return (
-    <div className="w-screen h-screen bg-slate-800">
+    <div className="w-screen h-screen bg-slate-800 flex flex-col">
       <h1 className="text-white text-2xl">Worlds best chat app</h1>
       <p className="text-white">Let's create an awesome chat client</p>
       <label className="text-white">

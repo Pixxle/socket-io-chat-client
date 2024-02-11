@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import { ChatMessage } from '../App' 
 
 
@@ -16,6 +16,7 @@ type User = {
 export default function ChatComponent (props: MessageProp) {
     const messages = props.messages
     const colorBlind = props.colorBlind
+    const chatContainerRef = useRef<HTMLDivElement>(null);
 
     function Username({ user }: { user: User }) {
         if (colorBlind) {
@@ -28,9 +29,16 @@ export default function ChatComponent (props: MessageProp) {
             )
         }
     }
+
+    useEffect(() => {
+        if (chatContainerRef.current) {
+            chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
+        }
+    }, [messages]);
+
       
   return (
-    <div>
+    <div ref={chatContainerRef} className='overflow-y-scroll'>
         {messages.map((message, index) => (
             <div key={index} className='bg-slate-300'>
                 {message.type === "USER_JOINED" &&(
