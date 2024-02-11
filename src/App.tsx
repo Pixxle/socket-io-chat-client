@@ -20,6 +20,7 @@ export type ChatMessage = {
 function App() {
 
   const [messages, setMessages] = useState<ChatMessage[]>([])
+  const [colorBlind, setColorBlind] = useState<boolean>(false) 
 
 
   useEffect(() => {
@@ -29,14 +30,23 @@ function App() {
     });
   }, [])
 
-  console.log(messages)
-
   return (
     <div className="w-screen h-screen bg-slate-800">
       <h1 className="text-white text-2xl">Worlds best chat app</h1>
       <p className="text-white">Let's create an awesome chat client</p>
-
-      <ChatComponent messages={messages}/>
+      <label className="text-white">
+        Color blind?
+        <input
+          type="checkbox"
+          name="checkbox"
+          checked={colorBlind}
+          onChange={(e) => setColorBlind(e.target.checked)}
+        />
+      </label>
+      <ChatComponent 
+        messages={messages}
+        colorBlind={colorBlind}
+      />
     </div>
   );
 }
