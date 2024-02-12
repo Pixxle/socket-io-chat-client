@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react'
-import { ChatMessage } from '../App' 
+import { ChatMessage, User } from '../App' 
 
 
 type MessageProp = {
@@ -7,11 +7,6 @@ type MessageProp = {
     colorBlind: boolean
 }
 
-type User = {
-    color: string
-    id: number
-    username: string
-}
 
 export default function ChatComponent (props: MessageProp) {
     const messages = props.messages
